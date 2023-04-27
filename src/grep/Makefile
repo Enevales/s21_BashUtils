@@ -1,7 +1,7 @@
 CC	=	gcc
 FLAGS	=	-Wall -Werror -Wextra -std=c11 -pedantic
 
-all: clean s21_grep tests linter
+all: clean s21_grep 
 
 s21_grep:
 		$(CC) $(FLAGS) s21_grep.c -o s21_grep
@@ -13,8 +13,8 @@ tests:
 
 linter:
 		cppcheck *.h *.c
-		cp ../../materials/linters/CPPLINT.cfg CPPLINT.cfg
-		python3 ../../materials/linters/cpplint.py --extension=c *.c *.h
+		cp ../../misc/linters/CPPLINT.cfg CPPLINT.cfg
+		python3 ../../misc/linters/cpplint.py --extension=c *.c *.h
 
 leaks:
  		CK_FORK=no leaks --atExit -- ./s21_grep -f pattern.txt test-samples/1.txt test-samples/2.txt

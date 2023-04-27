@@ -1,7 +1,7 @@
 CC	=	gcc
 FLAGS	=	-Wall -Werror -Wextra -std=c11 -pedantic 
 
-all: clean s21_cat tests linter
+all: clean s21_cat
 
 s21_cat:
 		$(CC) $(FLAGS) s21_cat.c -o s21_cat
@@ -12,8 +12,8 @@ tests:
 
 linter:
 		cppcheck *.h *.c
-		cp ../../materials/linters/CPPLINT.cfg CPPLINT.cfg
-		python3 ../../materials/linters/cpplint.py --extension=c *.c *.h
+		cp ../../misc/linters/CPPLINT.cfg CPPLINT.cfg
+		python3 ../../misc/linters/cpplint.py --extension=c *.c *.h
 
 leaks:
 		CK_FORK=no leaks --atExit -- ./s21_cat -benstv test-samples/1.txt
